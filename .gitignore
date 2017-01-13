@@ -1,0 +1,21 @@
+# OS X junk
+.DS_Store
+
+# Python generated
+*.py[cod]
+
+# Build artifcats
+*.egg
+*.egg-info
+dist
+build
+eggs
+bin
+sdist
+
+# External
+lib
+lib64
+
+# Jupyter checkpoints
+.ipynb_checkpoints
