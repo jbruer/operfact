@@ -175,7 +175,33 @@ class IndirectActionMeasurement(Measurement):
 
 class SubsampleMeasurement(Measurement):
     """Retrieves a fixed set of indices from the operator."""
-    pass
+    def __init__(self, indices, oper_shape):
+        self.indices = indices
+        self.shape = oper_shape
+        self.nmeas = len(indices)
+
+    def apply(self, oper):
+        if isinstance(oper, operators.DyadsOperator):
+            return np.array([sum([oper.lfactors[i][ix[0:2]] * oper.rfactors[i][ix[2:4]] for i in oper.nfactors])
+                             for ix in self.indices])
+        else:
+            return oper[self.indices]
+
+    def cvxapply(self, oper):
+        return cvxpy.vec([sum([oper.lfactors[i][ix[0:2]] * oper.rfactors[i][ix[2:4]] for i in oper.nfactors])
+                          for ix in self.indices])
+
+    def asOperator(self):
+        raise NotImplementedError
+
+    def initfromoper(self, oper):
+        raise NotImplementedError
+
+    def initfrommeas(self, meas):
+        out = np.zeros(self.shape)
+        for i, ix in enumerate(self.indices):
+            out[ix] = meas[i]
+        return out
 
 
 class IdentityMeasurement(Measurement):
