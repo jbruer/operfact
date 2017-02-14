@@ -2,7 +2,9 @@
 
 The `operfact` package enables the modeling and solution of structured low-rank operator recovery problems using nuclear norms.
 
-My thesis discusses these problems in more detail. (link pending final publication)
+My thesis discusses these problems in more detail. Reference:
+
+Bruer, John J. (2017) Recovering structured low-rank operators using nuclear norms. Dissertation (Ph.D.), California Institute of Technology. [doi:10.7907/Z9F18WQS](http://dx.doi.org/10.7907/Z9F18WQS). http://resolver.caltech.edu/CaltechTHESIS:02082017-062956314
 
 ## Code Example
 
